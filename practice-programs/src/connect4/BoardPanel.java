@@ -21,7 +21,6 @@ public class BoardPanel extends JPanel {
 		this.setBackground(Color.BLACK);
 		this.setSize(700, 600);
 		this.addMouseListener(new MouseListen());
-
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class BoardPanel extends JPanel {
 		drawLines(g);
 	}
 
-	public void kill() {
+	public void reset() {
 		this.board = new Board();
 		this.turn = 0;
 		this.setBackground(Color.BLACK);
@@ -105,10 +104,10 @@ public class BoardPanel extends JPanel {
 			if (checkWinner()) {
 				JOptionPane.showMessageDialog(null, "The winner is "
 						+ BoardPanel.this.board.getWinner());
-				kill();
+				reset();
 			} else if (noSpaces()) {
 				JOptionPane.showMessageDialog(null, "No winner");
-				kill();
+				reset();
 			}
 
 		}

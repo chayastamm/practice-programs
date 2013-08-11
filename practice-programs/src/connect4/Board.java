@@ -6,20 +6,18 @@ public class Board {
 
 	private Piece[][] pieces;
 	private Color winner;
-	private String how;
 
 	public Board() {
 		this.pieces = new Piece[6][7];
 		this.winner = null;
-		this.how = " ";
 		createBoard();
 	}
 
 	public String getWinner() {
 		if (this.winner == Color.RED) {
-			return "red " + this.how;
+			return "red ";
 		} else {
-			return "yellow " + this.how;
+			return "yellow ";
 		}
 	}
 
@@ -48,11 +46,8 @@ public class Board {
 	}
 
 	public boolean isWinner() {
-		if (isVerticalWinner() || isHorizontalWinner() || isDiagonalWinnerUp()
-				|| isDiagonalWinnerDown()) {
-			return true;
-		}
-		return false;
+		return (isVerticalWinner() || isHorizontalWinner() || isDiagonalWinnerUp()
+				|| isDiagonalWinnerDown());
 	}
 
 	public boolean isFull() {
@@ -62,7 +57,6 @@ public class Board {
 					return false;
 				}
 			}
-
 		}
 		return true;
 	}
@@ -82,10 +76,9 @@ public class Board {
 					count++;
 					if (count == 4) {
 						this.winner = color;
-						this.how = "- won Vertical";
 						return true;
 					}
-				} else if (color != this.pieces[i][j].getColor()) {
+				} else {
 					color = this.pieces[i][j].getColor();
 					count = 1;
 				}
@@ -110,7 +103,6 @@ public class Board {
 					count++;
 					if (count == 4) {
 						this.winner = color;
-						this.how = "- won Horizontal";
 						return true;
 					}
 				} else if (color != this.pieces[i][j].getColor()) {
@@ -141,7 +133,6 @@ public class Board {
 						continue;
 					} else {
 						this.winner = color;
-						this.how = "- won Diagonally - up";
 						return true;
 					}
 				}
@@ -167,7 +158,6 @@ public class Board {
 						continue;
 					} else {
 						this.winner = color;
-						this.how = "- won Diagonally - down";
 						return true;
 					}
 				}

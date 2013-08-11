@@ -8,7 +8,7 @@ public class BoardGui extends JFrame {
 	private BoardPanel panel = new BoardPanel();
 
 	public BoardGui() {
-		this.setPanel(new BoardPanel());
+		this.panel = new BoardPanel();
 		this.add(this.panel);
 
 		this.setSize(709, 635);
@@ -18,12 +18,5 @@ public class BoardGui extends JFrame {
 		this.setVisible(true);
 	}
 
-	public BoardPanel getPanel() {
-		return this.panel;
-	}
-
-	public void setPanel(BoardPanel panel) {
-		this.panel = panel;
-	}
 
 }
