@@ -6,11 +6,11 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-public class Man extends JPanel {
+public class ManDisplayPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private int choice;
 
-	public Man(int choice) {
+	public ManDisplayPanel(int choice) {
 		this.choice = choice;
 		this.setSize(500, 400);
 	}
