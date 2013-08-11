@@ -1,0 +1,70 @@
+package telephonePuzzle;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+
+public class GamesPlayedPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+
+	private int gamesPlayed;
+	private int gamesWon;
+	private int gamesLost;
+	private JLabel gamesPlayedLabel;
+	private JLabel gamesWonLabel;
+	private JLabel gamesLostLabel;
+
+	public GamesPlayedPanel() {
+		setSize(700, 150);
+		setLayout(new GridLayout(1, 3));
+		this.gamesLost = 0;
+		this.gamesPlayed = 0;
+		this.gamesWon = 0;
+		setUpLabels();
+	}
+
+	public void setUpLabels() {
+		this.gamesLostLabel = new JLabel("Games lost: " + gamesLost);
+		this.gamesPlayedLabel = new JLabel("Games played: " + gamesPlayed);
+		this.gamesWonLabel = new JLabel("Games won: " + gamesWon);
+		this.gamesLostLabel.setBorder(new LineBorder(Color.yellow, 10, false));
+		this.gamesPlayedLabel
+				.setBorder(new LineBorder(Color.yellow, 10, false));
+		this.gamesWonLabel.setBorder(new LineBorder(Color.yellow, 10, false));
+		add(gamesPlayedLabel);
+		add(gamesWonLabel);
+		add(gamesLostLabel);
+	}
+
+	public int getGamesPlayed() {
+		return gamesPlayed;
+	}
+
+	public void setGamesPlayed() {
+		this.gamesPlayed++;
+		this.gamesPlayedLabel.setText("Games played: " + gamesPlayed);
+	}
+
+	public int getGamesWon() {
+		return gamesWon;
+	}
+
+	public void setGamesWon() {
+		this.gamesWon++;
+		this.gamesWonLabel.setText("Games won: " + gamesWon);
+	}
+
+	public int getGamesLost() {
+		return gamesLost;
+	}
+
+	public void setGamesLost() {
+		this.gamesLost++;
+		this.gamesLostLabel.setText("Games lost: " + gamesLost);
+	}
+
+}

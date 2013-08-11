@@ -1,0 +1,19 @@
+package hangman;
+
+public class WordBag {
+	private int length;
+
+	public WordBag(int length) {
+		this.length = length;
+		File file = new File("./wordlist.txt");
+		Scanner readFromFile = new Scanner(file);
+		words = new HashMap<String, ArrayList<Character>>();
+		while (readFromFile.hasNextLine()) {
+			String word = readFromFile.nextLine();
+			// put each word in its list in both maps
+			ArrayList<Character> wordOrdered = wordToChar(word);
+			words.put(word, wordOrdered);
+		}
+	}
+
+}

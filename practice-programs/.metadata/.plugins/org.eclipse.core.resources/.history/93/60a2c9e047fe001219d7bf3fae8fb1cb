@@ -1,0 +1,19 @@
+package connect4;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+public class BoardGui extends JFrame{
+	private static final long serialVersionUID = 1L;
+	private Board board;
+	
+	public BoardGui(){
+		this.board = new Board();
+		
+		this.setBackground(Color.BLACK);
+		this.setSize(525, 450);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setVisible(true);
+	}
+}

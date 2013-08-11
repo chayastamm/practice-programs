@@ -1,0 +1,26 @@
+package hangman;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class test {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		int min = 10, max = 0;
+		File file = new File(
+				"C:/Documents and Settings/Chaya/My Documents/Downloads/workspace/Practice/src/dic.txt");
+		Scanner readFromFile = new Scanner(file);
+		while (readFromFile.hasNextLine()) {
+			String word = readFromFile.nextLine();
+			if (word.length() > max) {
+				max = word.length();
+			}
+			if (word.length() < min) {
+				min = word.length();
+			}
+		}
+		System.out.println("min " + min + " max " + max);
+		readFromFile.close();
+	}
+}

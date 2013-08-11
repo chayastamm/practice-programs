@@ -1,0 +1,28 @@
+package connect4;
+
+import javax.swing.JFrame;
+
+public class BoardGui extends JFrame {
+	private static final long serialVersionUID = 1L;
+
+	private BoardPanel panel = new BoardPanel();
+
+	public BoardGui() {
+		this.setPanel(new BoardPanel());
+		this.add(this.panel);
+
+		this.setSize(710, 635);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
+
+	public BoardPanel getPanel() {
+		return this.panel;
+	}
+
+	public void setPanel(BoardPanel panel) {
+		this.panel = panel;
+	}
+
+}

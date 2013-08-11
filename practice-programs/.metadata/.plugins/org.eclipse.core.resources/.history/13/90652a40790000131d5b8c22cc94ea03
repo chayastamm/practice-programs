@@ -1,0 +1,89 @@
+package telephonePuzzle;
+
+import java.awt.Font;
+import java.awt.Insets;
+
+import javax.swing.JButton;
+
+public class DisplayButton extends JButton {
+
+	private static final long serialVersionUID = 1L;
+	private String letters;
+	private Character correctLetter;
+	private int upTo;
+
+	public DisplayButton(Character correctLetter, int size) {
+		setSize(size, 110);
+		setFont(new Font("Arial", 1, 15));
+		setMargin(new Insets(0, 0, 0, 0));
+		this.letters = "";
+		this.correctLetter = correctLetter;
+		this.upTo = 0;
+	}
+
+	public void setList() {
+		switch (correctLetter) {
+		case 'a':
+		case 'b':
+		case 'c':
+			letters += 'a';
+			letters += 'b';
+			letters += 'c' + "\n" + 2;
+			break;
+		case 'd':
+		case 'e':
+		case 'f':
+			letters += 'd';
+			letters += 'e';
+			letters += 'f' + "\n" + 3;
+			break;
+		case 'g':
+		case 'h':
+		case 'i':
+			letters += 'g';
+			letters += 'h';
+			letters += 'i' + "\n" + 4;
+			break;
+		case 'j':
+		case 'k':
+		case 'l':
+			letters += 'j';
+			letters += 'k';
+			letters += 'l' + "\n" + 5;
+			break;
+		case 'm':
+		case 'n':
+		case 'o':
+			letters += 'm';
+			letters += 'n';
+			letters += 'o' + "\n" + 6;
+			break;
+		case 'p':
+		case 'q':
+		case 'r':
+		case 's':
+			letters += 'p';
+			letters += 'q';
+			letters += 'r';
+			letters += 's' + "\n" + 7;
+			break;
+		case 't':
+		case 'u':
+		case 'v':
+			letters += 't';
+			letters += 'u';
+			letters += 'v' + "\n" + 8;
+			break;
+		case 'w':
+		case 'x':
+		case 'y':
+		case 'z':
+			letters += 'w';
+			letters += 'x';
+			letters += 'y';
+			letters += 'z' + "\n" + 9;
+			break;
+		}
+	}
+
+}

@@ -1,0 +1,9 @@
+package hangman;
+
+public class WordBag {
+private int length;
+	public WordBag(int length){
+		
+	}
+	
+}

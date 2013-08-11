@@ -1,0 +1,41 @@
+package hangman;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.Scanner;
+
+public class test {
+	public test() throws FileNotFoundException {
+		getNums();
+	}
+
+	public static void main(String[] args) throws FileNotFoundException {
+		test t = new test();
+	}
+
+	public void getNums() throws FileNotFoundException {
+		int min = 10, max = 0;
+		URL url = getClass().getResource("dic.txt");
+		String path = url.getPath();
+		System.out.println(path);
+		if (path.contains("%20")) {
+			path.replace("%20", " ");
+		}
+		System.out.println(path);
+		File file = new File(path);
+
+		Scanner readFromFile = new Scanner(file);
+		while (readFromFile.hasNextLine()) {
+			String word = readFromFile.nextLine();
+			if (word.length() > max) {
+				max = word.length();
+			}
+			if (word.length() < min) {
+				min = word.length();
+			}
+		}
+		System.out.println("min " + min + " max " + max);
+		readFromFile.close();
+	}
+}

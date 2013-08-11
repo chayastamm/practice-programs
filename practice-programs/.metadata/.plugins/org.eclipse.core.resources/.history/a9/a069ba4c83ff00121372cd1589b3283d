@@ -1,0 +1,39 @@
+package hangman;
+
+import java.awt.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class WordBag {
+	private int length;
+	private List words;
+
+	public WordBag(int length) throws FileNotFoundException {
+		this.setLength(length);
+		File file = new File("./dic.txt");
+		Scanner readFromFile = new Scanner(file);
+		this.words = new List();
+		while (readFromFile.hasNextLine()) {
+			String word = readFromFile.nextLine();
+			if (word.length() == length) {
+				this.words.add(word);
+			}
+		}
+		readFromFile.close();
+	}
+
+	public String getWord(){
+		Random random = new random();
+		
+	}
+	
+	public int getLength() {
+		return length;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+
+}

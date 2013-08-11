@@ -1,0 +1,23 @@
+package hangman;
+
+import java.awt.GridLayout;
+import java.awt.Panel;
+
+import javax.swing.JFrame;
+
+public class HangmanFrame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+
+	public HangmanFrame(int length) {
+		setSize(1000, 800);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setTitle("Hangman");
+		KeyboardPanel panel = new KeyboardPanel();
+		this.add(panel);
+		setVisible(true);
+
+	}
+
+}

@@ -1,0 +1,45 @@
+package connect4;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+public class BoardPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private Board board;
+
+	public BoardPanel() {
+		this.board = new Board();
+
+		this.setBackground(Color.BLACK);
+		this.setSize(700, 600);
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		drawLines(g);
+	}
+
+	public void drawLines(Graphics g) {
+		g.setColor(Color.WHITE);
+		for (int x = 1; x < 7; x++) {
+			g.drawLine(x * 100, 0, x * 100, 600);
+		}
+		for (int y = 1; y < 6; y++) {
+			g.drawLine(0, y * 100, 700, y * 100);
+		}
+		for (int i = 0; i < 7; i++) {
+			for (int j = 0; j < 6; j++) {
+				g.setColor(this.board.getPieces()[i][j].getColor());
+				g.fillOval(this.board.getPieces()[i][j].getX(),
+						this.board.getPieces()[i][j].getY(),
+						this.board.getPieces()[i][j].getLength(),
+						this.board.getPieces()[i][j].getWidth());
+			}
+		}
+
+	}
+}

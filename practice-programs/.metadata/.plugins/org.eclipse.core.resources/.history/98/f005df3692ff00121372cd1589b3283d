@@ -1,0 +1,12 @@
+package hangman;
+
+import javax.swing.JPanel;
+
+public class ManPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+
+	public ManPanel() {
+		setSize(500, 400);
+	}
+}

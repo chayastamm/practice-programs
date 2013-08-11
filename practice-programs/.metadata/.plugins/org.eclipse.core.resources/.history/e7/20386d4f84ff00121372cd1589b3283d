@@ -1,0 +1,22 @@
+package hangman;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class test {
+
+	public static void main(String[] args) {
+		File file = new File("./dic.txt");
+		Scanner readFromFile = new Scanner(file);
+		this.words = new ArrayList<String>();
+		while (readFromFile.hasNextLine()) {
+			String word = readFromFile.nextLine();
+			if (word.length() == length) {
+				words.add(word);
+			}
+		}
+		readFromFile.close();
+	}
+
+}

@@ -1,0 +1,12 @@
+package telephonePuzzle;
+
+import javax.swing.JPanel;
+
+public class LettersPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	public LettersPanel(String word){
+		
+	}
+
+}

@@ -1,0 +1,7 @@
+package telephonePuzzle;
+
+import javax.swing.JPanel;
+
+public class GamesPlayedPanel extends JPanel {
+
+}

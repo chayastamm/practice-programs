@@ -1,0 +1,11 @@
+package telephonePuzzle;
+
+public class TelephoneMain {
+
+	
+	public static void main(String[] args) {
+		TelephoneFrame frame = new TelephoneFrame();
+
+	}
+
+}

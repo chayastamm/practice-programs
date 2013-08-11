@@ -1,0 +1,112 @@
+package telephonePuzzle;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class TelephoneFrame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+
+	private JPanel controlPanel;
+	private WordBag wordBag;
+	private String word;
+	private GamesPlayedPanel gamesPlayedPanel;
+	private LettersPanel lettersPanel;
+	private JPanel buttonPanel;
+
+	public TelephoneFrame() throws FileNotFoundException {
+		setTitle("Telephone Puzzle");
+		setSize(700, 600);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setLayout(new GridLayout(3, 1));
+		setWord();
+		setGamesPlayedPanel();
+		setLettersPanel();
+		setButtonPanel();
+		setVisible(true);
+	}
+
+	public void setGamesPlayedPanel() {
+		this.gamesPlayedPanel = new GamesPlayedPanel();
+		gamesPlayedPanel.setBackground(Color.LIGHT_GRAY);
+		this.add(gamesPlayedPanel);
+	}
+
+	public void setLettersPanel() {
+		this.lettersPanel = new LettersPanel(word);
+		lettersPanel.setBackground(Color.LIGHT_GRAY);
+		this.add(lettersPanel);
+	}
+
+	public void setWord() throws FileNotFoundException {
+		this.wordBag = new WordBag();
+		this.word = wordBag.getWord();
+	}
+
+	public void setButtonPanel() {
+		buttonPanel = new JPanel(new GridLayout(3, 9));
+		buttonPanel.setSize(700, 150);
+		JPanel grayPanel = new JPanel();
+		grayPanel.setBackground(Color.LIGHT_GRAY);
+		for (int i = 0; i < 9; i++) {
+			grayPanel = new JPanel();
+			grayPanel.setBackground(Color.LIGHT_GRAY);
+			buttonPanel.add(grayPanel);
+		}
+		buttonPanel.add(grayPanel);
+		addButton("Submit");
+		buttonPanel.add(grayPanel);
+		addButton("Give Up");
+		buttonPanel.add(grayPanel);
+		addButton("Quit");
+		buttonPanel.add(grayPanel);
+		addButton("New Game");
+		buttonPanel.add(grayPanel);
+		for (int i = 0; i < 9; i++) {
+			buttonPanel.add(grayPanel);
+		}
+		this.add(buttonPanel);
+	}
+
+	public void addButton(String title) {
+		JButton button = new JButton(title);
+		button.setBackground(Color.blue);
+		button.setMargin(new Insets(0, 0, 0, 0));
+		button.addMouseListener(new ButtonListener());
+		buttonPanel.add(button);
+	}
+
+	private class ButtonListener implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+		}
+
+	}
+}

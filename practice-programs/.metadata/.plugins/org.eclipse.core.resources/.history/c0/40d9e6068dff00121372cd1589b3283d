@@ -1,0 +1,10 @@
+package hangman;
+
+import javax.swing.JFrame;
+
+public class HangmanFrame extends JFrame {
+	public HangmanFrame(int length) {
+
+	}
+
+}

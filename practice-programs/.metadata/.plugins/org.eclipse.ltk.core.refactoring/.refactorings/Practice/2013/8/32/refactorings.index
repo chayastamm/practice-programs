@@ -1,0 +1,24 @@
+1375760636279	Encapsulate field 'panel'
+1375811023349	Rename method 'isDiagonalWinnerRight'
+1375894903279	Encapsulate field 'length'
+1375895484154	Move file
+1375895778718	Move file
+1375896000046	Copy file
+1375896002730	Delete element
+1375899422307	Delete element
+1375905390699	Convert local variable 'combo' to field
+1375914972097	Extract local variable 'man'
+1375914996021	Convert local variable 'man' to field
+1375921656999	Encapsulate field 'buttons'
+1375928342222	Delete element
+1375991077133	Copy file
+1375991379969	Copy compilation unit
+1375992423089	Convert local variable 'controlPanel' to field
+1376002233566	Convert local variable 'submitButton' to field
+1376002508982	Convert local variable 'giveUpButton' to field
+1376002556280	Convert local variable 'newGameButton' to field
+1376002562659	Convert local variable 'quitButton' to field
+1376008343782	Rename type 'RunGame'
+1376018061295	Convert local variable 'number' to field
+1376018498383	Rename field 'number'
+1376081709428	Delete element

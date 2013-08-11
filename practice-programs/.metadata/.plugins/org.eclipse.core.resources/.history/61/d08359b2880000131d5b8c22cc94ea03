@@ -1,0 +1,160 @@
+package telephonePuzzle;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+
+public class TelephoneFrame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+
+	private WordBag wordBag;
+	private String word;
+	private GamesPlayedPanel gamesPlayedPanel;
+	private LettersPanel lettersPanel;
+	private JPanel buttonPanel;
+	private JButton submitButton;
+	private JButton giveUpButton;
+	private JButton newGameButton;
+	private JButton quitButton;
+
+	public TelephoneFrame() throws FileNotFoundException {
+		setTitle("Telephone Puzzle");
+		setSize(700, 600);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setLayout(new BorderLayout());
+		setWord();
+		setGamesPlayedPanel();
+		setLettersPanel();
+		setButtonPanel();
+		setVisible(true);
+	}
+
+	public void resetAll() throws FileNotFoundException {
+		this.removeAll();
+		this.repaint();
+		setWord();
+		setGamesPlayedPanel();
+		setLettersPanel();
+		setButtonPanel();
+	}
+
+	public void reset() throws FileNotFoundException {
+		this.remove(lettersPanel);
+		this.remove(buttonPanel);
+		this.repaint();
+		setWord();
+		setLettersPanel();
+		setButtonPanel();
+		setVisible(true);
+	}
+
+	public void setGamesPlayedPanel() {
+		this.gamesPlayedPanel = new GamesPlayedPanel();
+		gamesPlayedPanel.setBackground(Color.LIGHT_GRAY);
+		this.add(gamesPlayedPanel);
+	}
+
+	public void setLettersPanel() {
+		this.lettersPanel = new LettersPanel(word);
+		lettersPanel.setBackground(Color.LIGHT_GRAY);
+		this.add(lettersPanel);
+	}
+
+	public void setWord() throws FileNotFoundException {
+		this.wordBag = new WordBag();
+		this.word = wordBag.getWord();
+	}
+
+	public void setButtonPanel() {
+		buttonPanel = new JPanel(new GridLayout(1, 4));
+		buttonPanel.setSize(700, 150);
+		submitButton = addButton("Submit");
+		giveUpButton = addButton("Give Up");
+		quitButton = addButton("Quit");
+		newGameButton = addButton("New Game");
+		this.add(buttonPanel);
+	}
+
+	public JButton addButton(String title) {
+		JButton button = new JButton(title);
+		button.setFont(new Font("Arial", 1, 22));
+		button.setBackground(Color.blue);
+		button.setMargin(new Insets(0, 0, 0, 0));
+		button.addMouseListener(new ButtonListener());
+		button.setBorder(new LineBorder(Color.BLACK, 10, false));
+		buttonPanel.add(button);
+		return button;
+	}
+
+	private class ButtonListener implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			if ((JButton) arg0.getSource() == submitButton) {
+				if (lettersPanel.getWord().compareTo(word) == 0) {
+					JOptionPane.showMessageDialog(null, "Correct!");
+					gamesPlayedPanel.setGamesPlayed();
+					gamesPlayedPanel.setGamesWon();
+				} else {
+					JOptionPane.showMessageDialog(null, "Sorry, word was "
+							+ word + "!");
+					gamesPlayedPanel.setGamesPlayed();
+					gamesPlayedPanel.setGamesLost();
+				}
+				try {
+					reset();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+			} else if ((JButton) arg0.getSource() == giveUpButton) {
+				JOptionPane.showMessageDialog(null, "Sorry, word was " + word
+						+ "!");
+				gamesPlayedPanel.setGamesPlayed();
+				gamesPlayedPanel.setGamesLost();
+				try {
+					reset();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+			} else if ((JButton) arg0.getSource() == quitButton) {
+				System.exit(0);
+			} else if ((JButton) arg0.getSource() == newGameButton) {
+				try {
+					resetAll();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+		}
+
+	}
+}

@@ -1,0 +1,23 @@
+package hangman;
+
+import java.awt.Color;
+
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
+
+public class ManPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private int chancesLeft;
+	
+	public ManPanel() {
+		this.chancesLeft= 10;
+		setSize(500, 400);
+		addBorder();
+	}
+	public void addBorder() {
+		TitledBorder border = new TitledBorder("Chances Left: " + chancesLeft);
+		border.setTitleColor(Color.BLUE);
+		this.setBorder(border);
+	}
+}

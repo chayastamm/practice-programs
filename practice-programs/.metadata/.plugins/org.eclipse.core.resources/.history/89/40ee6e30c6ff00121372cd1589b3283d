@@ -1,0 +1,74 @@
+package hangman;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
+
+public class WordPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
+	private String word;
+	private JButton[] buttons;
+
+	public WordPanel(String word) {
+		this.word = word;
+		this.setButtons(new JButton[word.length()]);
+		setSize(500, 400);
+		setLayout(new GridLayout(3, 1));
+		addBorder();
+		fillWithButtons();
+	}
+
+	public void addBorder() {
+		TitledBorder border = new TitledBorder("Word is:");
+		border.setTitleColor(Color.BLUE);
+		this.setBorder(border);
+	}
+
+	public void fillWithButtons() {
+		JPanel panel = new JPanel(new GridLayout(1, word.length()));
+		panel.setSize(500, 300);
+		for (int i = 0; i < word.length(); i++) {
+			JButton button = new JButton();
+			button.setEnabled(false);
+
+			buttons[i] = button;
+			buttons[i].setText(" ");
+			panel.add(button);
+		}
+		this.add(new JPanel());
+		this.add(panel);
+		this.add(new JPanel());
+	}
+
+	public JButton[] getButtons() {
+		return buttons;
+	}
+
+	public void setButtons(JButton[] buttons) {
+		this.buttons = buttons;
+	}
+
+	public void pressButtons(char letter) {
+		for (int i = 0; i < word.length(); i++) {
+			if (word.charAt(i) == letter) {
+				Font font = new Font("Arial", 1, 22);
+				buttons[i].setFont(font);
+				buttons[i].setText(letter + "");
+			}
+		}
+	}
+
+	public boolean won() {
+		for (int i = 0; i < word.length(); i++) {
+			if (buttons[i].getText().charAt(0) != 'z') {
+				System.out.println(buttons[i].getText().charAt(0));
+				return false;
+			}
+		}
+		return true;
+	}
+}

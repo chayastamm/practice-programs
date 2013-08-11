@@ -1,0 +1,13 @@
+package connect4;
+
+import javax.swing.JFrame;
+
+public class BoardGui extends JFrame{
+	private static final long serialVersionUID = 1L;
+	private Board board;
+	
+	public BoardGui(){
+		this.board = new Board();
+		this.setVisible(true);
+	}
+}

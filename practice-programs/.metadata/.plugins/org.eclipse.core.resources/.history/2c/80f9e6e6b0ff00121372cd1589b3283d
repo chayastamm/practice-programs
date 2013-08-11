@@ -1,0 +1,87 @@
+package hangman;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+public class Man extends JPanel {
+	private static final long serialVersionUID = 1L;
+	private int choice;
+
+	public Man(int choice) {
+		this.choice = choice;
+		this.setSize(500, 400);
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		drawMan(g);
+	}
+
+	public void drawMan(Graphics g) {
+		switch (choice) {
+		case 10:
+			// stand
+			g.fillRect(200, 300, 190, 20);
+			g.fillRect(320, 60, 20, 240);
+			g.fillRect(200, 50, 140, 20);
+			g.fillOval(200, 50, 10, 30);
+			// face and hair
+			Color color = new Color(240, 216, 204);
+			g.setColor(color);
+			g.fillOval(180, 80, 50, 50);
+			g.setColor(Color.BLACK);
+			g.drawArc(180, 82, 50, 50, 0, 180);
+			g.drawArc(180, 81, 50, 50, 0, 180);
+			g.drawArc(180, 80, 50, 50, 0, 180);
+			// draw one eye
+			g.drawArc(190, 95, 5, 5, 0, 180);
+			g.drawOval(190, 100, 5, 5);
+			g.setColor(Color.BLUE);
+			g.fillOval(190, 100, 5, 5);
+			// draw second eye
+			g.setColor(Color.BLACK);
+			g.drawArc(215, 95, 5, 5, 0, 180);
+			g.drawOval(215, 100, 5, 5);
+			g.setColor(Color.BLUE);
+			g.fillOval(215, 100, 5, 5);
+			// draw mouth
+			color = new Color(191, 69, 68);
+			g.setColor(color);
+			g.drawArc(195, 120, 20, 5, 0, 180);
+			// draw nose
+			color = new Color(218, 160, 149);
+			g.setColor(color);
+			g.drawLine(204, 105, 200, 115);
+			g.drawLine(200, 115, 205, 115);
+			// draw half neck and one arm
+			color = new Color(240, 216, 204);
+			g.setColor(color);
+			g.fillOval(195, 125, 10, 10);
+			g.setColor(Color.BLACK);
+			g.fillRect(175, 133, 30, 60);
+			g.fillRect(142, 133, 35, 18);
+			// draw half neck and one arm
+			g.setColor(color);
+			g.fillOval(205, 125, 10, 10);
+			g.setColor(Color.BLACK);
+			g.fillRect(200, 133, 30, 60);
+			g.fillRect(230, 133, 35, 18);
+			// draw one leg
+			g.setColor(Color.DARK_GRAY);
+			g.fillRect(171, 190, 33, 20);
+			g.fillRect(172, 210, 25, 40);
+			// draw one leg
+			g.fillRect(202, 190, 30, 20);
+			g.fillRect(206, 210, 25, 40);
+			// draw noose
+			g.setColor(Color.BLACK);
+			g.fillOval(193, 128, 25, 3);
+			break;
+
+		}
+
+	}
+}

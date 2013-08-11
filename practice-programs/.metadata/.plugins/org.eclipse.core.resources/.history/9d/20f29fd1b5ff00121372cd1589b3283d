@@ -1,0 +1,46 @@
+package hangman;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
+
+public class ManPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private int chancesLeft;
+	private Man man;
+
+	public ManPanel() {
+		this.chancesLeft = 10;
+		setSize(500, 400);
+		setLayout(new GridLayout(1, 1));
+		addBorder();
+		man = new Man(chancesLeft);
+		this.add(man);
+	}
+
+	public void addBorder() {
+		LineBorder border = new LineBorder();
+		border.setTitleColor(Color.BLUE);
+		this.setBorder(border);
+	}
+
+	public void registerMistake() {
+		chancesLeft--;
+		this.remove(man);
+		this.man = new Man(chancesLeft);
+		this.add(man);
+		addBorder();
+		// add figure
+	}
+
+	public int getChancesLeft() {
+		return chancesLeft;
+	}
+
+	public void setChancesLeft(int chancesLeft) {
+		this.chancesLeft = chancesLeft;
+	}
+}

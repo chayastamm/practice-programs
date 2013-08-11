@@ -1,0 +1,114 @@
+package connect4;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JPanel;
+
+public class BoardPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private Board board;
+	private int turn;
+
+	public BoardPanel() {
+		this.board = new Board();
+		this.turn = 0;
+		this.setBackground(Color.BLACK);
+		this.setSize(700, 600);
+		this.addMouseListener(new MouseListen());
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		drawLines(g);
+	}
+
+	public void drawLines(Graphics g) {
+		g.setColor(Color.WHITE);
+		for (int x = 1; x < 7; x++) {
+			g.drawLine(x * 100, 0, x * 100, 600);
+		}
+		for (int y = 1; y < 6; y++) {
+			g.drawLine(0, y * 100, 700, y * 100);
+		}
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 7; j++) {
+				g.setColor(this.board.getPieces()[i][j].getColor());
+				g.fillOval(this.board.getPieces()[i][j].getX(),
+						-this.board.getPieces()[i][j].getY(),
+						this.board.getPieces()[i][j].getLength(),
+						this.board.getPieces()[i][j].getWidth());
+			}
+		}
+		this.repaint();
+	}
+
+	private class MouseListen implements MouseListener {
+		public Color getColor() {
+			if (BoardPanel.this.turn % 2 == 0) {
+				return Color.RED;
+			}
+			return Color.YELLOW;
+		}
+
+		public int getInt(double num) {
+			if (num < 100) {
+				return 0;
+			} else if (num < 200) {
+				return 1;
+			} else if (num < 300) {
+				return 2;
+			} else if (num < 400) {
+				return 3;
+			} else if (num < 500) {
+				return 4;
+			} else if (num < 600) {
+				return 5;
+			} else {
+				return 6;
+			}
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			Point p = new Point(arg0.getLocationOnScreen());
+			double X = p.getX();
+			int x = getInt(X);
+			int y = BoardPanel.this.board.getNextSpot(x);
+			if (y != -1) {
+				this.board.getPieces()[y][x].setColor(getColor());
+				this.turn++;
+			}
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+}

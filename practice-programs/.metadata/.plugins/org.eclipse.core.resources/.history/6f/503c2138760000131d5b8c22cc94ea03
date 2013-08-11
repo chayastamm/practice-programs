@@ -1,0 +1,63 @@
+package telephonePuzzle;
+
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+
+public class LetterButton extends JButton {
+
+	private static final long serialVersionUID = 1L;
+
+	private ArrayList<Character> letters;
+	private Character correctLetter;
+
+	public LetterButton(Character correctLetter, int size) {
+		setSize(size, 110);
+		this.letters = new ArrayList<Character>();
+		this.correctLetter = correctLetter;
+	}
+
+	public void setList(){
+		switch(correctLetter){
+		case 'a':
+		case 'b':
+		case 'c':
+			break;
+		case 'd':
+		case 'e':
+		case 'f':
+			break;
+		case 'g':
+		case 'h':
+		case 'i':
+			break;
+		case 'j':
+		case 'k':
+		case 'l':
+			break;
+		case 'm':
+		case 'n':
+		case 'o':
+			break;
+		case 'p':
+		case 'q':
+		case 'r':
+		case 's'
+			break;
+		case 't':
+		case 'u':
+		case 'v':
+			break;
+		case 'w':
+		case 'x':
+		case 'y':
+		case 'z':
+			break;
+		}
+	}
+
+	public void nextLetter() {
+
+	}
+
+}

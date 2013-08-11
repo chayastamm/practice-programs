@@ -1,0 +1,26 @@
+package telephonePuzzle;
+
+import java.awt.GridLayout;
+
+import javax.swing.JPanel;
+
+public class LettersPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private String word;
+
+	public LettersPanel(String word) {
+		this.word = word;
+		setSize(700, 300);
+		setLayout(new GridLayout(2, word.length()));
+		addButtons();
+	}
+
+	public void addButtons() {
+		for (int i = 0; i < word.length(); i++) {
+			LetterButton button = new LetterButton(word.charAt(i),
+					700 / word.length());
+			this.add(button);
+		}
+	}
+}
