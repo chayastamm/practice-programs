@@ -1,0 +1,6 @@
+URL url = getClass().getResource("dic.txt");
+		String path = url.getPath();
+		if (path.contains("%20")) {
+			path = path.replace("%20", " ");
+		}
+		File file = new File(path);
