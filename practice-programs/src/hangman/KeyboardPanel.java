@@ -17,7 +17,7 @@ public class KeyboardPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private WordBag wordBag;
 	private WordPanel wordPanel;
-	private ManPanel manPanel;
+	private ManControlPanel manControlPanel;
 	private JPanel keys;
 	private String word;
 	private JButton[] letters;
@@ -27,7 +27,7 @@ public class KeyboardPanel extends JPanel {
 		this.wordBag = new WordBag(length);
 		this.word = wordBag.getWord();
 		this.wordPanel = new WordPanel(word);
-		this.manPanel = new ManPanel();
+		this.manControlPanel = new ManControlPanel();
 		this.letters = new JButton[26];
 		setSize(1000, 800);
 		setLayout(new GridLayout(2, 1));
@@ -41,7 +41,7 @@ public class KeyboardPanel extends JPanel {
 		this.removeAll();
 		this.word = wordBag.getWord();
 		this.wordPanel = new WordPanel(word);
-		this.manPanel = new ManPanel();
+		this.manControlPanel = new ManControlPanel();
 		this.letters = new JButton[26];
 		setSize(1000, 800);
 		setLayout(new GridLayout(2, 1));
@@ -54,7 +54,7 @@ public class KeyboardPanel extends JPanel {
 		combo = new JPanel();
 		combo.setSize(1000, 800);
 		combo.add(wordPanel);
-		combo.add(manPanel);
+		combo.add(manControlPanel);
 		combo.setLayout(new GridLayout(1, 2));
 		this.add(combo);
 	}
@@ -92,36 +92,35 @@ public class KeyboardPanel extends JPanel {
 			char userChoice = arg0.getKeyChar();
 			try {
 				letters[userChoice - 97].setEnabled(false);
+				if (word.contains(userChoice + "")) {
+					wordPanel.pressButtons(userChoice);
+					if (wordPanel.won()) {
+						try {
+							JOptionPane.showMessageDialog(null,
+									"Great, you won! Word was " + word);
+							reset();
+						} catch (FileNotFoundException e) {
+							e.printStackTrace();
+						}
+					}
+				} else {
+					manControlPanel.registerMistake();
+					if (manControlPanel.getChancesLeft() == 0) {
+						try {
+							JOptionPane.showMessageDialog(null,
+									"Sorry, you lost! Word was " + word);
+							reset();
+						} catch (FileNotFoundException e) {
+							e.printStackTrace();
+						}
+					}
+				}
 			} catch (Exception e) {
-
+				//ignore
 			}
 
-			if (word.contains(userChoice + "")) {
-				wordPanel.pressButtons(userChoice);
-				if (wordPanel.won()) {
-					try {
-						JOptionPane.showMessageDialog(null,
-								"Great, you won! Word was " + word);
-						reset();
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
-				}
-			} else {
-				manPanel.registerMistake();
-				if (manPanel.getChancesLeft() == 0) {
-					try {
-						JOptionPane.showMessageDialog(null,
-								"Sorry, you lost! Word was " + word);
-						reset();
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-
+			
 		}
-
 	}
 
 	private class MouseListen implements MouseListener {
@@ -142,8 +141,8 @@ public class KeyboardPanel extends JPanel {
 					}
 				}
 			} else {
-				manPanel.registerMistake();
-				if (manPanel.getChancesLeft() == 0) {
+				manControlPanel.registerMistake();
+				if (manControlPanel.getChancesLeft() == 0) {
 					try {
 						JOptionPane.showMessageDialog(null,
 								"Sorry, you lost! Word was " + word);

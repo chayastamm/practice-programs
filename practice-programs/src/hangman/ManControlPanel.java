@@ -4,19 +4,19 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
-public class ManPanel extends JPanel {
+public class ManControlPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private int chancesLeft;
 	private ManDisplayPanel man;
 
-	public ManPanel() {
+	public ManControlPanel() {
 		this.chancesLeft = 10;
 		setSize(500, 400);
 		setLayout(new GridLayout(1, 1));
 		man = new ManDisplayPanel(chancesLeft);
 		this.add(man);
-		man.addBorder();
+		man.setBorder();
 	}
 
 	public void registerMistake() {
@@ -24,7 +24,7 @@ public class ManPanel extends JPanel {
 		this.remove(man);
 		this.man = new ManDisplayPanel(chancesLeft);
 		this.add(man);
-		man.addBorder();
+		man.setBorder();
 	}
 
 	public int getChancesLeft() {

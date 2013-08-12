@@ -20,11 +20,11 @@ public class WordPanel extends JPanel {
 		this.lettersFound = 0;
 		setSize(500, 400);
 		setLayout(new GridLayout(3, 1));
-		addBorder();
+		setBorder();
 		fillWithButtons();
 	}
 
-	public void addBorder() {
+	public void setBorder() {
 		TitledBorder border = new TitledBorder("Word is:");
 		border.setTitleColor(Color.BLUE);
 		this.setBorder(border);

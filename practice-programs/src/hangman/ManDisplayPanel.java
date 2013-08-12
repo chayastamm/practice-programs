@@ -21,7 +21,7 @@ public class ManDisplayPanel extends JPanel {
 		drawMan(g);
 	}
 
-	public void addBorder() {
+	public void setBorder() {
 		TitledBorder border = new TitledBorder("Chances Left: " + choice);
 		border.setTitleColor(Color.BLUE);
 		this.setBorder(border);

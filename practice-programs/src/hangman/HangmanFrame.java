@@ -9,7 +9,7 @@ public class HangmanFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public HangmanFrame(int length) {
+	public HangmanFrame(int length) throws FileNotFoundException {
 		if (length < 11) {
 			setSize(1000, 800);
 		} else {
@@ -18,15 +18,8 @@ public class HangmanFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setTitle("Hangman");
-		KeyboardPanel panel;
-		try {
-			panel = new KeyboardPanel(length);
-
-			this.add(panel);
-		} catch (FileNotFoundException e) {
-
-			JOptionPane.showMessageDialog(null, "Not Working");
-		}
+		KeyboardPanel panel = new KeyboardPanel(length);
+		this.add(panel);
 		setVisible(true);
 
 	}
