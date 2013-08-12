@@ -18,25 +18,31 @@ public class DisplayButton extends JButton {
 	private JLabel numberLabel;
 
 	public DisplayButton(Character correctLetter) {
-
 		setMargin(new Insets(0, 0, 0, 0));
 		setBorder(new LineBorder(Color.MAGENTA, 5, false));
 		setLayout(new GridLayout(2, 1));
 		setEnabled(false);
 		this.letters = "";
 		this.correctLetter = correctLetter;
+		setUpNumberLabel();
+		setUpLettersLabel();
+	}
+
+	public void setUpNumberLabel(){
 		numberLabel = new JLabel();
-		setList();
 		numberLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		numberLabel.setFont(new Font("Arial", 1, 15));
+		setList();
 		this.add(numberLabel);
+	}
+	
+	public void setUpLettersLabel() {
 		JLabel lettersLabel = new JLabel(letters);
 		lettersLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lettersLabel.setFont(new Font("Arial", 1, 15));
 		this.add(lettersLabel);
-
 	}
-
+	
 	public void setList() {
 		switch (correctLetter) {
 		case 'a':

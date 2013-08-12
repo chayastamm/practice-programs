@@ -6,7 +6,5 @@ public class TelephoneMain {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		TelephoneFrame frame = new TelephoneFrame();
-
 	}
-
 }

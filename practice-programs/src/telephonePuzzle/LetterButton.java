@@ -14,7 +14,7 @@ public class LetterButton extends JButton {
 
 	private static final long serialVersionUID = 1L;
 
-	private ArrayList<Character> letters;
+	private ArrayList<Character> possibleLetters;
 	private Character correctLetter;
 	private int upTo;
 
@@ -23,9 +23,10 @@ public class LetterButton extends JButton {
 		setMargin(new Insets(0, 0, 0, 0));
 		addMouseListener(new ButtonListener());
 		setBorder(new LineBorder(Color.ORANGE, 5, false));
-		this.letters = new ArrayList<Character>();
+		this.possibleLetters = new ArrayList<Character>();
 		this.correctLetter = correctLetter;
 		this.upTo = 0;
+		//until user clicks, set text to placeholder
 		this.setText("???");
 		setList();
 	}
@@ -35,71 +36,72 @@ public class LetterButton extends JButton {
 		case 'a':
 		case 'b':
 		case 'c':
-			letters.add('a');
-			letters.add('b');
-			letters.add('c');
+			possibleLetters.add('a');
+			possibleLetters.add('b');
+			possibleLetters.add('c');
 			break;
 		case 'd':
 		case 'e':
 		case 'f':
-			letters.add('d');
-			letters.add('e');
-			letters.add('f');
+			possibleLetters.add('d');
+			possibleLetters.add('e');
+			possibleLetters.add('f');
 			break;
 		case 'g':
 		case 'h':
 		case 'i':
-			letters.add('g');
-			letters.add('h');
-			letters.add('i');
+			possibleLetters.add('g');
+			possibleLetters.add('h');
+			possibleLetters.add('i');
 			break;
 		case 'j':
 		case 'k':
 		case 'l':
-			letters.add('j');
-			letters.add('k');
-			letters.add('l');
+			possibleLetters.add('j');
+			possibleLetters.add('k');
+			possibleLetters.add('l');
 			break;
 		case 'm':
 		case 'n':
 		case 'o':
-			letters.add('m');
-			letters.add('n');
-			letters.add('o');
+			possibleLetters.add('m');
+			possibleLetters.add('n');
+			possibleLetters.add('o');
 			break;
 		case 'p':
 		case 'q':
 		case 'r':
 		case 's':
-			letters.add('p');
-			letters.add('q');
-			letters.add('r');
-			letters.add('s');
+			possibleLetters.add('p');
+			possibleLetters.add('q');
+			possibleLetters.add('r');
+			possibleLetters.add('s');
 			break;
 		case 't':
 		case 'u':
 		case 'v':
-			letters.add('t');
-			letters.add('u');
-			letters.add('v');
+			possibleLetters.add('t');
+			possibleLetters.add('u');
+			possibleLetters.add('v');
 			break;
 		case 'w':
 		case 'x':
 		case 'y':
 		case 'z':
-			letters.add('w');
-			letters.add('x');
-			letters.add('y');
-			letters.add('z');
+			possibleLetters.add('w');
+			possibleLetters.add('x');
+			possibleLetters.add('y');
+			possibleLetters.add('z');
 			break;
 		}
 	}
 
 	public void getNextLetter() {
-		if (upTo == letters.size()) {
+		if (upTo == possibleLetters.size()) {
+			//go back to the beginning
 			upTo = 0;
 		}
-		this.setText(letters.get(upTo) + "");
+		this.setText(possibleLetters.get(upTo) + "");
 		upTo++;
 	}
 

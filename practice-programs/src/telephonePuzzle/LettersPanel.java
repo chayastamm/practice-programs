@@ -30,7 +30,7 @@ public class LettersPanel extends JPanel {
 		}
 	}
 
-	public String getWord() {
+	public String getWordFromButtons() {
 		String word = "";
 		for (int i = 0; i < buttons.size(); i++) {
 			word += buttons.get(i).getText();

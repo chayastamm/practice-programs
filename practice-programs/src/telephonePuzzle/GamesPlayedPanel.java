@@ -29,27 +29,35 @@ public class GamesPlayedPanel extends JPanel {
 	}
 
 	public void setUpLabels() {
+		setUpGamesPlayedLabel();
+		setUpGamesWonLabel();
+		setUpGamesLostLabel();
+	}
+
+	public void setUpGamesLostLabel() {
 		this.gamesLostLabel = new JLabel("Games lost: " + gamesLost);
-		this.gamesPlayedLabel = new JLabel("Games played: " + gamesPlayed);
-		this.gamesWonLabel = new JLabel("Games won: " + gamesWon);
-
 		this.gamesLostLabel.setBorder(new LineBorder(Color.BLACK, 10, false));
-		this.gamesPlayedLabel.setBorder(new LineBorder(Color.BLACK, 10, false));
-		this.gamesWonLabel.setBorder(new LineBorder(Color.BLACK, 10, false));
-
 		this.gamesLostLabel.setFont(new Font("Arial", 1, 20));
-		this.gamesPlayedLabel.setFont(new Font("Arial", 1, 20));
-		this.gamesWonLabel.setFont(new Font("Arial", 1, 20));
-
 		this.gamesLostLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		this.gamesPlayedLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		this.gamesWonLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-		add(gamesPlayedLabel);
-		add(gamesWonLabel);
 		add(gamesLostLabel);
 	}
 
+	public void setUpGamesPlayedLabel(){
+		this.gamesPlayedLabel = new JLabel("Games played: " + gamesPlayed);
+		this.gamesPlayedLabel.setBorder(new LineBorder(Color.BLACK, 10, false));
+		this.gamesPlayedLabel.setFont(new Font("Arial", 1, 20));
+		this.gamesPlayedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		add(gamesPlayedLabel);
+	}
+	
+	public void setUpGamesWonLabel(){
+		this.gamesWonLabel = new JLabel("Games won: " + gamesWon);
+		this.gamesWonLabel.setBorder(new LineBorder(Color.BLACK, 10, false));
+		this.gamesWonLabel.setFont(new Font("Arial", 1, 20));
+		this.gamesWonLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		add(gamesWonLabel);	
+	}
+	
 	public int getGamesPlayed() {
 		return gamesPlayed;
 	}

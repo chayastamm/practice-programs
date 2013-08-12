@@ -58,7 +58,6 @@ public class TelephoneFrame extends JFrame {
 		setWord();
 		setLettersPanel();
 		setButtonPanel();
-		setVisible(true);
 	}
 
 	public void setGamesPlayedPanel() {
@@ -103,7 +102,7 @@ public class TelephoneFrame extends JFrame {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			if ((JButton) arg0.getSource() == submitButton) {
-				if (lettersPanel.getWord().compareTo(word) == 0) {
+				if (lettersPanel.getWordFromButtons().compareTo(word) == 0) {
 					JOptionPane.showMessageDialog(null, "Correct!");
 					gamesPlayedPanel.setGamesPlayed();
 					gamesPlayedPanel.setGamesWon();
