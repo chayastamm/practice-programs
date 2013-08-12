@@ -29,94 +29,28 @@ public class ManDisplayPanel extends JPanel {
 
 	public void drawMan(Graphics g) {
 		switch (choice) {
+		case 0:
+			drawNoose(g);
+		case 1:
+			drawRightLeg(g);
+		case 2:
+			drawLeftLeg(g);
+		case 3:
+			drawRightArm(g);
+		case 4:
+			drawLeftArm(g);
+		case 5:
+			drawMouth(g);
+		case 6:
+			drawNose(g);
+		case 7:
+			drawEye2(g);
+		case 8:
+			drawEye1(g);
+		case 9:
+			drawFace(g);
 		case 10:
 			drawStand(g);
-			break;
-		case 9:
-			drawStand(g);
-			drawFace(g);
-			break;
-		case 8:
-			drawStand(g);
-			drawFace(g);
-			drawEye1(g);
-			break;
-		case 7:
-			drawStand(g);
-			drawFace(g);
-			drawEye1(g);
-			drawEye2(g);
-			break;
-		case 6:
-			drawStand(g);
-			drawFace(g);
-			drawEye1(g);
-			drawEye2(g);
-			drawNose(g);
-			break;
-		case 5:
-			drawStand(g);
-			drawFace(g);
-			drawEye1(g);
-			drawEye2(g);
-			drawNose(g);
-			drawMouth(g);
-			break;
-		case 4:
-			drawStand(g);
-			drawFace(g);
-			drawEye1(g);
-			drawEye2(g);
-			drawNose(g);
-			drawMouth(g);
-			drawLeftArm(g);
-			break;
-		case 3:
-			drawStand(g);
-			drawFace(g);
-			drawEye1(g);
-			drawEye2(g);
-			drawNose(g);
-			drawMouth(g);
-			drawLeftArm(g);
-			drawRightArm(g);
-			break;
-		case 2:
-			drawStand(g);
-			drawFace(g);
-			drawEye1(g);
-			drawEye2(g);
-			drawNose(g);
-			drawMouth(g);
-			drawLeftArm(g);
-			drawRightArm(g);
-			drawLeftLeg(g);
-			break;
-		case 1:
-			drawStand(g);
-			drawFace(g);
-			drawEye1(g);
-			drawEye2(g);
-			drawNose(g);
-			drawMouth(g);
-			drawLeftArm(g);
-			drawRightArm(g);
-			drawLeftLeg(g);
-			drawRightLeg(g);
-			break;
-		case 0:
-			drawStand(g);
-			drawFace(g);
-			drawEye1(g);
-			drawEye2(g);
-			drawNose(g);
-			drawMouth(g);
-			drawLeftArm(g);
-			drawRightArm(g);
-			drawLeftLeg(g);
-			drawRightLeg(g);
-			drawNoose(g);
-			break;
 		}
 	}
 
