@@ -24,11 +24,11 @@ public class KeyboardPanel extends JPanel {
 	private JPanel combo;
 
 	public KeyboardPanel(int length) throws FileNotFoundException {
-		this.wordBag = new WordBag(length);
-		this.word = wordBag.getWord();
-		this.wordPanel = new WordPanel(word);
-		this.manControlPanel = new ManControlPanel();
-		this.letters = new JButton[26];
+		wordBag = new WordBag(length);
+		word = wordBag.getWord();
+		wordPanel = new WordPanel(word);
+		manControlPanel = new ManControlPanel();
+		letters = new JButton[26];
 		setSize(1000, 800);
 		setLayout(new GridLayout(2, 1));
 		setUpCombo();
@@ -39,10 +39,10 @@ public class KeyboardPanel extends JPanel {
 
 	public void reset() throws FileNotFoundException {
 		this.removeAll();
-		this.word = wordBag.getWord();
-		this.wordPanel = new WordPanel(word);
-		this.manControlPanel = new ManControlPanel();
-		this.letters = new JButton[26];
+		word = wordBag.getWord();
+		wordPanel = new WordPanel(word);
+		manControlPanel = new ManControlPanel();
+		letters = new JButton[26];
 		setSize(1000, 800);
 		setLayout(new GridLayout(2, 1));
 		setUpCombo();
@@ -60,7 +60,7 @@ public class KeyboardPanel extends JPanel {
 	}
 
 	public void setUpKeys() {
-		this.keys = new JPanel();
+		keys = new JPanel();
 		keys.setSize(1000, 400);
 		keys.setLayout(new GridLayout(3, 8));
 		for (int i = 0; i < 26; i++) {
@@ -90,36 +90,37 @@ public class KeyboardPanel extends JPanel {
 		@Override
 		public void keyTyped(KeyEvent arg0) {
 			char userChoice = arg0.getKeyChar();
-			try {
-				letters[userChoice - 97].setEnabled(false);
-				if (word.contains(userChoice + "")) {
-					wordPanel.pressButtons(userChoice);
-					if (wordPanel.won()) {
-						try {
-							JOptionPane.showMessageDialog(null,
-									"Great, you won! Word was " + word);
-							reset();
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
+			if (letters[userChoice - 97].isEnabled()) {
+				try {
+					letters[userChoice - 97].setEnabled(false);
+					if (word.contains(userChoice + "")) {
+						wordPanel.pressButtons(userChoice);
+						if (wordPanel.won()) {
+							try {
+								JOptionPane.showMessageDialog(null,
+										"Great, you won! Word was " + word);
+								reset();
+							} catch (FileNotFoundException e) {
+								e.printStackTrace();
+							}
+						}
+					} else {
+						manControlPanel.registerMistake();
+						if (manControlPanel.getChancesLeft() == 0) {
+							try {
+								JOptionPane.showMessageDialog(null,
+										"Sorry, you lost! Word was " + word);
+								reset();
+							} catch (FileNotFoundException e) {
+								e.printStackTrace();
+							}
 						}
 					}
-				} else {
-					manControlPanel.registerMistake();
-					if (manControlPanel.getChancesLeft() == 0) {
-						try {
-							JOptionPane.showMessageDialog(null,
-									"Sorry, you lost! Word was " + word);
-							reset();
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
-						}
-					}
+				} catch (Exception e) {
+					// ignore
 				}
-			} catch (Exception e) {
-				//ignore
-			}
 
-			
+			}
 		}
 	}
 

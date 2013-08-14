@@ -4,3 +4,5 @@ URL url = getClass().getResource("dic.txt");
 			path = path.replace("%20", " ");
 		}
 		File file = new File(path);
+		
+		https://github.com/chaysim/practice-programs.git

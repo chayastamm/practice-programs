@@ -1,6 +1,7 @@
 package ticTacToe;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JButton;
 
@@ -15,6 +16,8 @@ public class XOButton extends JButton {
 		this.i = i;
 		this.j = j;
 		this.setBackground(Color.WHITE);
+		Font font = new Font("Arial", 1, 25);
+		setFont(font);
 	}
 
 	public void setXO(int turn) {
