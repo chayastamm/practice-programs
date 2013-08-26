@@ -7,8 +7,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
-import javax.swing.JOptionPane;
-
 public class ComputerPlayer {
 
 	private Point mustGoHere;
@@ -20,10 +18,11 @@ public class ComputerPlayer {
 	/*
 	 * To calculate where to go, the computer first checks: to make sure there
 	 * is space left - if not, game ends to make sure no one has one won already
-	 * - since for now the player goes first, this is never true to see if the
+	 * - since for now the player goes first, this is never true; then for a
+	 * specific double trap the rest of the logic doesn't prevent; to see if the
 	 * board is empty - if it is, it returns the center to see if it is almost
-	 * winning - if it is, it will go in that place to see it it is almost
-	 * losing - if it is, it will block the player Then the computer gets the
+	 * winning - if it is, it will go in that place; to see it it is almost
+	 * losing - if it is, it will block the player. Then the computer gets the
 	 * char to see if it is x or o and passes the list of spots, the board, and
 	 * the char to the checkMove method which returns a list of winning spots.
 	 * If the list is empty, then the computer goes into a randomly chosen spot
@@ -34,10 +33,10 @@ public class ComputerPlayer {
 		ArrayList<Point> spots = board.getEmptySpots();
 		ArrayList<Point> winningSpots = new ArrayList<Point>();
 		if (spots.size() == 0) {
-			JOptionPane.showMessageDialog(null, "No spaces left");
-			System.exit(0);
-		} else if (board.checkWin()) {
-			JOptionPane.showMessageDialog(null, "Already won");
+			return null;
+		} else if (spots.size() == 6 && board.getBoard()[0][2] == 'x'
+				&& board.getBoard()[2][0] == 'x') {
+			return new Point(1, 0);
 		} else if (spots.size() == 9) {
 			return new Point(1, 1);
 		} else if (almostWinning(spots.size(), board)) {

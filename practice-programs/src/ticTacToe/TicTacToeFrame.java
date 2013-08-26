@@ -41,7 +41,10 @@ public class TicTacToeFrame extends JFrame {
 	}
 
 	public void reset() {
-		System.exit(0);
+		this.dispose();
+		turn = 1;
+		new TicTacToeFrame();
+
 	}
 
 	private class ClickListener implements MouseListener {
@@ -66,27 +69,28 @@ public class TicTacToeFrame extends JFrame {
 			XOButton button = (XOButton) arg0.getSource();
 			button.setXO(turn);
 			board.getBoard()[button.getI()][button.getJ()] = button.getXO();
-			if (board.checkWin()) {
+			if (!board.checkWin()) {
+				turn++;
+				try {
+					Point p = computerPlayer.getNextMove(board);
+					board.getBoard()[(int) p.getX()][(int) p.getY()] = computerPlayer
+							.getChar(turn);
+					buttons[(int) p.getX()][(int) p.getY()].setXO(turn);
+					if (board.checkWin()) {
+						JOptionPane.showMessageDialog(null, "The winner is "
+								+ computerPlayer.getChar(turn));
+						reset();
+					} else {
+						turn++;
+					}
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "No winner");
+					reset();
+				}
+			} else {
 				JOptionPane.showMessageDialog(null,
 						"The winner is " + button.getXO());
 				reset();
-			} else {
-				turn++;
-			}
-			try {
-				Point p = computerPlayer.getNextMove(board);
-				board.getBoard()[(int) p.getX()][(int) p.getY()] = computerPlayer
-						.getChar(turn);
-				buttons[(int) p.getX()][(int) p.getY()].setXO(turn);
-				if (board.checkWin()) {
-					JOptionPane.showMessageDialog(null, "The winner is "
-							+ computerPlayer.getChar(turn));
-					reset();
-				} else {
-					turn++;
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
 
 		}
