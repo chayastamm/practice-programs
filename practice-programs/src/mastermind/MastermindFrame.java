@@ -2,6 +2,7 @@ package mastermind;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class MastermindFrame extends JFrame {
 		goButton.setText("Go!");
 		goButton.setBackground(Color.GREEN);
 		goButton.addMouseListener(new GoListener());
+		goButton.setMargin(new Insets(0, 0, 0, 0));
 		this.add(goButton);
 	}
 
@@ -79,6 +81,14 @@ public class MastermindFrame extends JFrame {
 		button.hide();
 	}
 
+	public void changeGoButton() {
+		if (goButton.getText().compareTo("Go!") == 0) {
+			goButton.setText("New game?");
+		} else {
+			goButton.setText("Go!");
+		}
+	}
+
 	public void revealLastRow() {
 		for (int i = 0; i < 4; i++) {
 			colorButtons[0][i].unhide();
@@ -100,7 +110,9 @@ public class MastermindFrame extends JFrame {
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-
+			if (goButton.getText().compareTo("Go!") != 0) {
+				reset();
+			}
 		}
 
 		@Override
@@ -124,6 +136,7 @@ public class MastermindFrame extends JFrame {
 						setNextRow();
 					} else {
 						revealLastRow();
+						changeGoButton();
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
