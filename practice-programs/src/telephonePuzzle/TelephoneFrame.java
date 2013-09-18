@@ -43,12 +43,8 @@ public class TelephoneFrame extends JFrame {
 	}
 
 	public void resetAll() throws FileNotFoundException {
-		this.removeAll();
-		this.repaint();
-		setWord();
-		setGamesPlayedPanel();
-		setLettersPanel();
-		setButtonPanel();
+		this.dispose();
+		new TelephoneFrame();
 	}
 
 	public void reset() throws FileNotFoundException {
@@ -61,20 +57,20 @@ public class TelephoneFrame extends JFrame {
 	}
 
 	public void setGamesPlayedPanel() {
-		this.gamesPlayedPanel = new GamesPlayedPanel();
+		gamesPlayedPanel = new GamesPlayedPanel();
 		gamesPlayedPanel.setBackground(Color.BLUE);
 		this.add(gamesPlayedPanel, BorderLayout.NORTH);
 	}
 
 	public void setLettersPanel() {
-		this.lettersPanel = new LettersPanel(word);
+		lettersPanel = new LettersPanel(word);
 		lettersPanel.setBackground(Color.LIGHT_GRAY);
 		this.add(lettersPanel, BorderLayout.CENTER);
 	}
 
 	public void setWord() throws FileNotFoundException {
-		this.wordBag = new WordBag();
-		this.word = wordBag.getWord();
+		wordBag = new WordBag();
+		word = wordBag.getWord();
 	}
 
 	public void setButtonPanel() {
@@ -104,6 +100,12 @@ public class TelephoneFrame extends JFrame {
 			if ((JButton) arg0.getSource() == submitButton) {
 				if (lettersPanel.getWordFromButtons().compareTo(word) == 0) {
 					JOptionPane.showMessageDialog(null, "Correct!");
+					gamesPlayedPanel.setGamesPlayed();
+					gamesPlayedPanel.setGamesWon();
+				} else if (wordBag.isContaining(lettersPanel
+						.getWordFromButtons())) {
+					JOptionPane.showMessageDialog(null,
+							"Not what I had in mind, but that's a word!");
 					gamesPlayedPanel.setGamesPlayed();
 					gamesPlayedPanel.setGamesWon();
 				} else {
