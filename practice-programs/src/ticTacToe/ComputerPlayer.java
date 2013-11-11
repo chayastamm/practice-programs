@@ -34,9 +34,13 @@ public class ComputerPlayer {
 		ArrayList<Point> winningSpots = new ArrayList<Point>();
 		if (spots.size() == 0) {
 			return null;
-		} else if (spots.size() == 6 && board.getBoard()[0][2] == 'x'
-				&& board.getBoard()[2][0] == 'x') {
-			return new Point(1, 0);
+		} else if (spots.size() == 6) {
+			if (board.getBoard()[0][2] == 'x' && board.getBoard()[2][0] == 'x') {
+				return new Point(1, 0);
+			} else if (board.getBoard()[0][0] == 'x'
+					&& board.getBoard()[1][1] == 'x') {
+				return new Point(0, 2);
+			}
 		} else if (spots.size() == 9) {
 			return new Point(1, 1);
 		} else if (almostWinning(spots.size(), board)) {

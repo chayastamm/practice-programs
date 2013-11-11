@@ -12,21 +12,21 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class MastermindFrame extends JFrame {
+public class MastermindFrame2 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private ColorButton[][] colorButtons;
 	private ArrayList<Color> colors;
 	private JButton goButton;
 	private ColorButton[] lastRow;
 	private AnswerPanel[] answerPanels;
-	private int currentCol;
+	private int currentRow;
 
-	public MastermindFrame() {
-		setSize(990, 450);
+	public MastermindFrame2() {
+		setSize(450, 990);
 		setTitle("Mastermind");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setLayout(new GridLayout(5, 11));
+		setLayout(new GridLayout(11, 5));
 		setColors();
 		addButtons();
 		setVisible(true);
@@ -47,27 +47,25 @@ public class MastermindFrame extends JFrame {
 	}
 
 	public void addButtons() {
-		colorButtons = new ColorButton[4][11];
+		colorButtons = new ColorButton[11][4];
 		answerPanels = new AnswerPanel[10];
-		currentCol = 0;
+		currentRow = 10;
 		for (int i = 0; i < 11; i++) {
-			if (i == 10) {
-				addGoButton();
-			} else {
+			if (i != 0) {
 				AnswerPanel answerPanel = new AnswerPanel();
-				answerPanels[i] = answerPanel;
+				answerPanels[i - 1] = answerPanel;
 				this.add(answerPanel);
+			} else {
+				addGoButton();
 			}
-		}
-		for (int j = 0; j < 4; j++) {
-			for (int i = 0; i < 11; i++) {
+			for (int j = 0; j < 4; j++) {
 				ColorButton colorButton = new ColorButton();
+				colorButton.setEnabled(false);
 				this.add(colorButton);
-				colorButtons[j][i] = colorButton;
-				if (i == 10) {
-					colorButton.setEnabled(false);
+				colorButtons[i][j] = colorButton;
+				if (i == 0) {
 					setButtonInLastRow(colorButton, j);
-				} else if (i == currentCol) {
+				} else if (i == currentRow) {
 					colorButton.addMouseListener(new ButtonListener());
 				} else {
 					colorButton.setEnabled(false);
@@ -84,7 +82,6 @@ public class MastermindFrame extends JFrame {
 	}
 
 	public void changeGoButton() {
-		currentCol = 0;
 		if (goButton.getText().compareTo("Go!") == 0) {
 			goButton.setText("New game?");
 		} else {
@@ -94,7 +91,7 @@ public class MastermindFrame extends JFrame {
 
 	public void revealLastRow() {
 		for (int i = 0; i < 4; i++) {
-			colorButtons[i][10].unhide();
+			colorButtons[0][i].unhide();
 		}
 	}
 
@@ -130,10 +127,10 @@ public class MastermindFrame extends JFrame {
 
 		@Override
 		public void mousePressed(MouseEvent arg0) {
-			if (colorButtons[0][currentCol].getColor() != Color.WHITE
-					&& colorButtons[1][currentCol].getColor() != Color.WHITE
-					&& colorButtons[2][currentCol].getColor() != Color.WHITE
-					&& colorButtons[3][currentCol].getColor() != Color.WHITE) {
+			if (colorButtons[currentRow][0].getColor() != Color.WHITE
+					&& colorButtons[currentRow][1].getColor() != Color.WHITE
+					&& colorButtons[currentRow][2].getColor() != Color.WHITE
+					&& colorButtons[currentRow][3].getColor() != Color.WHITE) {
 				try {
 					if (!getAnswer()) {
 						setNextRow();
@@ -161,37 +158,37 @@ public class MastermindFrame extends JFrame {
 			int white = 0;
 			ArrayList<Color> usedColors = new ArrayList<Color>();
 			for (int i = 0; i < 4; i++) {
-				for (MouseListener ml : colorButtons[i][currentCol]
+				for (MouseListener ml : colorButtons[currentRow][i]
 						.getMouseListeners()) {
-					colorButtons[i][currentCol].removeMouseListener(ml);
+					colorButtons[currentRow][i].removeMouseListener(ml);
 				}
-				if (colorButtons[i][currentCol].getColor() == colorButtons[i][10]
+				if (colorButtons[currentRow][i].getColor() == colorButtons[0][i]
 						.getColor()
-						&& !usedColors.contains(colorButtons[i][currentCol]
+						&& !usedColors.contains(colorButtons[currentRow][i]
 								.getColor())) {
 					black++;
-					usedColors.add(colorButtons[i][currentCol].getColor());
+					usedColors.add(colorButtons[currentRow][i].getColor());
 				}
 			}
 			for (int i = 0; i < 4; i++) {
-				if ((colorButtons[i][currentCol].getColor() == colorButtons[0][10]
+				if ((colorButtons[currentRow][i].getColor() == colorButtons[0][0]
 						.getColor()
-						|| colorButtons[i][currentCol].getColor() == colorButtons[1][10]
+						|| colorButtons[currentRow][i].getColor() == colorButtons[0][1]
 								.getColor()
-						|| colorButtons[i][currentCol].getColor() == colorButtons[2][10]
-								.getColor() || colorButtons[i][currentCol]
-						.getColor() == colorButtons[3][10].getColor())
-						&& !usedColors.contains(colorButtons[i][currentCol]
+						|| colorButtons[currentRow][i].getColor() == colorButtons[0][2]
+								.getColor() || colorButtons[currentRow][i]
+						.getColor() == colorButtons[0][3].getColor())
+						&& !usedColors.contains(colorButtons[currentRow][i]
 								.getColor())) {
 					white++;
-					usedColors.add(colorButtons[i][currentCol].getColor());
+					usedColors.add(colorButtons[currentRow][i].getColor());
 				}
 			}
-			answerPanels[currentCol++].setColorList(black, white);
+			answerPanels[--currentRow].setColorList(black, white);
 			if (black == 4) {
 				JOptionPane.showMessageDialog(null, "You won!");
 				return true;
-			} else if (currentCol == 10) {
+			} else if (currentRow == 0) {
 				JOptionPane.showMessageDialog(null, "You lost!");
 				return true;
 			} else {
@@ -201,8 +198,8 @@ public class MastermindFrame extends JFrame {
 
 		public void setNextRow() {
 			for (int i = 0; i < 4; i++) {
-				colorButtons[i][currentCol].setEnabled(true);
-				colorButtons[i][currentCol]
+				colorButtons[currentRow][i].setEnabled(true);
+				colorButtons[currentRow][i]
 						.addMouseListener(new ButtonListener());
 			}
 		}
